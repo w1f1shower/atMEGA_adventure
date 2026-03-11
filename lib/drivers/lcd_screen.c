@@ -1,8 +1,3 @@
-#include "../../include/drivers/lcd_screen.h"
-#include <string.h>
-#include <stdlib.h>
-
-
 void lcd_toggle_enable(void) {
 	LCD_EN_PORT |= (1 << LCD_EN_BIT);
 	_delay_us(5);

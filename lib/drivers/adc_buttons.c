@@ -1,4 +1,3 @@
-#include "../../include/drivers/adc_buttons.h"
 
 void adc_init(void) {
 	ADMUX  = (1 << REFS0); 	/*| AVCC Reference |*/

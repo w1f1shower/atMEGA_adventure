@@ -6,10 +6,10 @@ CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os -Wall -ffreestanding # -nostdlib (do 
 TARGET = game
 
 LIBDIR = lib
-LIBDIR_DRIVERS = $(LIBDIR)/drivers
+#LIBDIR_DRIVERS = $(LIBDIR)/drivers
 INCDIR = include
 
-SOURCES = $(wildcard *.c) $(wildcard $(LIBDIR)/*.c) $(wildcard $(LIBDIR_DRIVERS)/*.c)
+SOURCES = $(wildcard *.c) $(wildcard $(LIBDIR)/*.c) #$(wildcard $(LIBDIR_DRIVERS)/*.c)
 OBJECTS = $(SOURCES:.c=.o)
 
 

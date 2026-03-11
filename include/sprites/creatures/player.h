@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 struct creature player = {
 	position: {
 		x: 0,
@@ -73,3 +76,5 @@ struct creature player = {
 		}
 	}
 };
+
+#endif

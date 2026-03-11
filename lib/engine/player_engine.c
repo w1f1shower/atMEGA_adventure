@@ -1,34 +1,3 @@
-#include "../include/game_lib.h"
-#include "../include/drivers/lcd_screen.h"
-#include "../include/drivers/adc_buttons.h"
-
-
-void creature_init(struct creature *creature) {
-	lcd_create_char(creature->id, creature->sides[creature->direction]);
-
-	creature->position.x = 8;
-	creature->position.y = 1;
-
-	creature->prev_position.x = creature->position.x;
-	creature->prev_position.y = creature->position.y;
-
-	lcd_goto(creature->position.y, creature->position.x);
-}
-
-void location_init(struct location *location, uint8_t uniq_chars[][8]) {
-	lcd_command(0x80);
-	for (uint8_t uniq = 0, id = LOCATION_FRAME_ID1; id <= LOCATION_FRAME_ID4; uniq++, id++) {
-		lcd_create_char(id, uniq_chars[uniq]);
-	}
-	
-	for (uint8_t row = 0; row < 2; row++) {
-		for (uint8_t col = 0; col < 16; col++) {
-			lcd_data(location->field[row][col]);
-				if (col == 15) lcd_command(0xC0);
-		}
-	}
-}
-
 void player_control(struct creature *player, struct location *location, uint8_t btn) {
 	if (btn != BTN_NONE ) {
 		player->prev_position.x = player->position.x;
