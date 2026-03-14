@@ -11,19 +11,27 @@ void player_control(struct creature *player, struct location *location, uint8_t 
 	
 		if (btn == BTN_LEFT && player->position.x > 0) {
 			player->direction = DIR_LEFT_MOVING;
-			player->position.x--;
+			if (location->cell_data[player->position.y][player->position.x-1] == CELL_STP) {
+				player->position.x--;
+			}
 		}
 		if (btn == BTN_RIGHT && player->position.x < 15) {
 			player->direction = DIR_RIGHT_MOVING;
-			player->position.x++;
+			if (location->cell_data[player->position.y][player->position.x+1] == CELL_STP) {
+				player->position.x++;
+			}
 		}
 		if (btn == BTN_UP && player->position.y > 0) {
 			player->direction = DIR_FRONT;
-			player->position.y--;
+			if (location->cell_data[player->position.y-1][player->position.x] == CELL_STP) {
+				player->position.y--;
+			}
 		}
 		if (btn == BTN_DOWN && player->position.y < 1) {
 			player->direction = DIR_BACK;
-			player->position.y++;
+			if (location->cell_data[player->position.y+1][player->position.x] == CELL_STP) {
+				player->position.y++;
+			}
 		}
 
 		lcd_create_char(PLAYER_ID, player->sides[player->direction]);
