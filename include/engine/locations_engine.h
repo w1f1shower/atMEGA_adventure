@@ -8,6 +8,6 @@ struct location {
 	const uint8_t field[2][16]; 	/*| buffer for textures 			|*/
 };
 
-void location_init(struct location *location, uint8_t uniq_chars[][8]);
+uint8_t location_init(struct location *location, uint8_t uniq_chars[][8]);
 
 #endif

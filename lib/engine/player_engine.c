@@ -1,3 +1,9 @@
+/*
+void player_move(struct creature *player, struct location *location, uint8_t btn) {
+	
+}
+*/
+
 void player_control(struct creature *player, struct location *location, uint8_t btn) {
 	if (btn != BTN_NONE ) {
 		player->prev_position.x = player->position.x;

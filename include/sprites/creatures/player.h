@@ -3,8 +3,8 @@
 
 struct creature player = {
 	position: {
-		x: 0,
-		y: 0
+		x: 8,
+		y: 1
 	},
 	prev_position: {
 		x: 0,

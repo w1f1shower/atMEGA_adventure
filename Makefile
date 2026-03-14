@@ -42,6 +42,7 @@ dump:
 
 analyze:
 	avr-size -A --mcu=$(MCU) $(TARGET).elf
+	avr-size -A --mcu=$(MCU) $(TARGET).hex
 
 
 .PHONY: all clean flash flash_init analyze

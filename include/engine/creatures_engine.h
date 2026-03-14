@@ -34,6 +34,6 @@ struct creature {
 	const uint8_t sides[][8];
 };
 
-void creature_init(struct creature *creature);
+uint8_t creature_init(struct creature *creature);
 
 #endif

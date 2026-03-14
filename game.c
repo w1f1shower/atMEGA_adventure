@@ -6,10 +6,8 @@ int main(void) {
 	lcd_init();
 	adc_init();
 
-	location_init(&lobby, tree);
-
-
-	creature_init(&player);
+	if (location_init(&lobby, tree) != 0)	engine_err(0xB7);
+	if (creature_init(&player) 	!= 0)	engine_err(player.id);
 
 	while (1) {
 		uint8_t btn = read_button();

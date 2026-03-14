@@ -2,9 +2,11 @@
 #define ENGINE_H
 
 #define F_CPU 16000000UL
+
 #include <avr/io.h>
 #include <util/delay.h>
-#include <stdint.h>
+
+void engine_err(uint8_t id);
 
 #include "engine/creatures_engine.h"
 #include "engine/locations_engine.h"
