@@ -40,9 +40,12 @@ flash_init:
 dump:
 	avr-objdump -S $(TARGET).elf | less
 
+r2:
+	r2 -AAA $(TARGET).elf
+
 analyze:
 	avr-size -A --mcu=$(MCU) $(TARGET).elf
 	avr-size -A --mcu=$(MCU) $(TARGET).hex
 
 
-.PHONY: all clean flash flash_init analyze
+.PHONY: all clean flash flash_init dump analyze

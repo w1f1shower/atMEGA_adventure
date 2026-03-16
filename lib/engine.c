@@ -8,6 +8,8 @@ void engine_err(uint8_t id) {
 	while(1){}
 }
 
-#include "engine/locations_engine.c"
 #include "engine/creatures_engine.c"
+#include "engine/objects_engine.c"
+#include "engine/locations_engine.c"
+
 #include "engine/player_engine.c"

@@ -1,11 +1,11 @@
 struct location lobby = {
 	cell_data: { 
-		{ CELL_UNSTP, CELL_STP, CELL_UNSTP, CELL_UNSTP, CELL_UNSTP, CELL_UNSTP, CELL_UNSTP, CELL_UNSTP, CELL_UNSTP, CELL_UNSTP, CELL_UNSTP, CELL_UNSTP, CELL_STP, CELL_STP, CELL_UNSTP, CELL_UNSTP }, 
-		{ CELL_UNSTP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_STP, CELL_UNSTP, CELL_UNSTP }
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP,   STP, STP, STP, FORGD, FORGD }, 
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, UNSTP, STP, STP, STP, FORGD, FORGD }
 	},
 	field: {
-			{ '@',  ' ', '$', 'T', 'h', 'e', '_', 'L', 'o', 'b', 'b', 'y', ' ', ' ', LOCATION_FRAME_ID1, LOCATION_FRAME_ID2 },
-			{ 0xB7, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', LOCATION_FRAME_ID3, LOCATION_FRAME_ID4 }
+			{ ' ', ' ', ' ', ' ', 'L', 'o', 'b', 'b', 'y', ' ', ' ',  ' ', ' ', ' ', LOCATION_FRAME_ID1, LOCATION_FRAME_ID2 },
+			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0xFF, ' ', ' ', ' ', LOCATION_FRAME_ID3, LOCATION_FRAME_ID4 }
 	}
 };
 
@@ -51,3 +51,13 @@ uint8_t tree[4][8] = {
 		0b11100
 	}
 };
+
+struct object crate = {
+	position: {
+		x: 3,
+		y: 1
+	},
+	id: 0xDB,
+};
+
+

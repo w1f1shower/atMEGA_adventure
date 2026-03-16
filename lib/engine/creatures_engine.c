@@ -10,5 +10,6 @@ uint8_t creature_init(struct creature *creature) {
 	creature->prev_position.y = creature->position.y;
 
 	lcd_goto(creature->position.y, creature->position.x);
+	lcd_data(creature->id);
 	return 0;
 }
