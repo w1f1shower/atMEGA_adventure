@@ -1,51 +1,52 @@
 CC = avr-gcc
 MCU = atmega328p
 F_CPU = 16000000UL
-CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os -Wall -ffreestanding # -nostdlib (do not do this (until u will want to implement some crazy stuff))
+CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os -Wall -ffreestanding -I$(INCDIR)
 
 TARGET = game
+BUILD_DIR = build
 
 LIBDIR = lib
-#LIBDIR_DRIVERS = $(LIBDIR)/drivers
 INCDIR = include
 
-SOURCES = $(wildcard *.c) $(wildcard $(LIBDIR)/*.c) #$(wildcard $(LIBDIR_DRIVERS)/*.c)
-OBJECTS = $(SOURCES:.c=.o)
+SOURCES = $(wildcard *.c) $(wildcard $(LIBDIR)/*.c)
 
+OBJECTS = $(patsubst %.c,$(BUILD_DIR)/%.o,$(SOURCES))
+ELF = $(BUILD_DIR)/$(TARGET).elf
+HEX = $(BUILD_DIR)/$(TARGET).hex
 
-all: clean $(TARGET).hex
+all: $(HEX)
 
-#$(OBJECTS): # $(SOURCES)
-%.o: %.c
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+$(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(TARGET).elf: $(OBJECTS)
+$(ELF): $(OBJECTS)
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(TARGET).hex: $(TARGET).elf
+$(HEX): $(ELF)
 	avr-objcopy -O ihex -R .eeprom $< $@
 
-
 clean:
-	rm -f $(OBJECTS) $(TARGET).elf $(TARGET).hex 
+	rm -rf $(BUILD_DIR)
 
-
-flash: $(TARGET).hex
+flash: $(HEX)
 	sudo avrdude -p $(MCU) -P usb -c usbasp -U flash:w:$<
 
 flash_init:
 	avrdude -p $(MCU) -c usbasp -n
 
+dump: $(ELF)
+	avr-objdump -S $(ELF) | less
 
-dump:
-	avr-objdump -S $(TARGET).elf | less
+r2: $(ELF)
+	r2 -AAA $(ELF)
 
-r2:
-	r2 -AAA $(TARGET).elf
+analyze: $(ELF) $(HEX)
+	avr-size -A --mcu=$(MCU) $(ELF)
+	avr-size -A --mcu=$(MCU) $(HEX)
 
-analyze:
-	avr-size -A --mcu=$(MCU) $(TARGET).elf
-	avr-size -A --mcu=$(MCU) $(TARGET).hex
-
-
-.PHONY: all clean flash flash_init dump analyze
+.PHONY: all clean flash flash_init dump r2 analyze
