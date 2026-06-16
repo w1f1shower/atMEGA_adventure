@@ -4,3 +4,4 @@ lib/*.o
 *.swp
 *.elf
 *.hex
+build/
