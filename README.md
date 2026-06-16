@@ -15,6 +15,7 @@ To build a project just run `make`, connect USBasp to ICSP port and run `make fl
 │   ├── engine
 │   │   ├── creatures_engine.h
 │   │   ├── locations_engine.h
+│   │   ├── objects_engine.h
 │   │   └── player_engine.h
 │   ├── engine.h
 │   ├── sprites
@@ -33,13 +34,14 @@ To build a project just run `make`, connect USBasp to ICSP port and run `make fl
 │   ├── engine
 │   │   ├── creatures_engine.c
 │   │   ├── locations_engine.c
+│   │   ├── objects_engine.c
 │   │   └── player_engine.c
 │   └── engine.c
 ├── LICENSE
-└── Makefile
-
+├── Makefile
+└── README.md
 ```
 
-## Creating custom locations and creatures
+## Creating your own locations, objects and creatures
 
 Comming soon!

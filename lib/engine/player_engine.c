@@ -24,12 +24,11 @@ void player_control(struct creature *player, const struct map *map, uint8_t btn)
 						player->position.x--;
 				}
 				else {
-					player->position.x = 15;
 					if (map_x > 0 &&
 					map->locations[map_x-1][map_y]->cell_data
-						[player->position.y]
-						[player->position.x]
+						[player->position.y][15]
 							< UNSTP) {
+						player->position.x = 15;
 						map_x--;
 						location_init(map->locations[map_x][map_y]);
 					}
@@ -46,12 +45,11 @@ void player_control(struct creature *player, const struct map *map, uint8_t btn)
 						player->position.x++;
 				}
 				else {
-					player->position.x = 0;
 					if (map_x < 1 &&
 					map->locations[map_x+1][map_y]->cell_data
-						[player->position.y]
-						[player->position.x]
+						[player->position.y][0]
 							< UNSTP) {
+						player->position.x = 0;
 						map_x++;
 						location_init(map->locations[map_x][map_y]);
 					}
@@ -69,8 +67,7 @@ void player_control(struct creature *player, const struct map *map, uint8_t btn)
 				}
 				else if (map_y < 1 &&
 					map->locations[map_x][map_y+1]->cell_data
-						[player->position.y+1]
-						[player->position.x]
+						[1][player->position.x]
 							< UNSTP) {
 					player->position.y = 1;
 					map_y++;
@@ -89,8 +86,7 @@ void player_control(struct creature *player, const struct map *map, uint8_t btn)
 				}
 				else if (map_y > 0 &&
 					map->locations[map_x][map_y-1]->cell_data
-						[player->position.y-1]
-						[player->position.x]
+						[0][player->position.x]
 							< UNSTP) {
 					player->position.y = 0;
 					map_y--;
