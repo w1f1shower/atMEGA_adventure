@@ -1,7 +1,5 @@
 #include "game.h"
 
-#define MAP_Y_SIZE
-
 
 int main(void) {
 

@@ -1,11 +1,11 @@
 struct location lobby00 = {
 	cell_data: { 
-		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }, 
-		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }
+		{ STP, STP, UNSTP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, UNSTP },
+		{ STP, STP, STP,   STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP   }
 	},
 	field: {
-		{ ' ', ' ', ' ', ' ', 'L', 'o', 'b', 'b', 'y', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-		{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', '0', ' ', ' ', ' ', ' ' }
+		{ ' ', ' ', 0xFF, ' ', 'L', 'o', 'b', 'b', 'y', ' ', ' ', ' ', ' ', ' ', ' ', 0xFF },
+		{ ' ', ' ', ' ',  ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', '0', ' ', ' ', ' ', ' '  }
 	}
 };
 struct location lobby01 = {
@@ -24,7 +24,7 @@ struct location lobby10 = {
 		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }
 	},
 	field: {
-		{ ' ', ' ', '0', '_', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+		{ ' ', ' ', 'o', '_', '0', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 		{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '1', '0', ' ', ' ', ' ', ' ' }
 	}
 };
@@ -34,7 +34,7 @@ struct location lobby11 = {
 		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }
 	},
 	field: {
-		{ ' ', ' ', ' ', ' ', 'L', 'o', 'b', 'b', 'y', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+		{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
 		{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '1', '1', ' ', ' ', ' ', ' ' }
 	}
 };
