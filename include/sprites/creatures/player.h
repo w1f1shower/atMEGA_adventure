@@ -13,9 +13,9 @@ struct creature player = {
 	},
 
 	id: PLAYER_ID,
-	direction: DIR_FRONT,
+	direction: DIR_UP,
 	sides: {
-		{ /*| DIR_FRONT |*/
+		{ /*| DIR_UP |*/
 			0b00000,
 			0b00100,
 			0b01110,
@@ -25,7 +25,7 @@ struct creature player = {
 			0b01010,
 			0b00000
 		},
-		{ /*| DIR_BACK |*/
+		{ /*| DIR_DOWN |*/
 			0b00000,
 			0b00100,
 			0b01110,
@@ -49,8 +49,8 @@ struct creature player = {
 			0b00000,
 			0b00100,
 			0b01110,
-			0b01110,
-			0b01110,
+			0b11110,
+			0b01100,
 			0b01100,
 			0b01010,
 			0b00000
@@ -69,8 +69,8 @@ struct creature player = {
 			0b00000,
 			0b00100,
 			0b01110,
-			0b01110,
-			0b01110,
+			0b01111,
+			0b00110,
 			0b00110,
 			0b01010,
 			0b00000

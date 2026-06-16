@@ -1,15 +1,8 @@
 #ifndef LOCATIONS_ENGINE_H
 #define LOCATIONS_ENGINE_H
 
-/*| TODO: enum as btmask for all cell options |*/
-enum {
-	STP,	/*| Cell is steppable	  |*/
-	BCKGD,	/*| Cell is background	  |*/
-	FORGD,	/*| Cell is foreground	  |*/
-	UNSTP	/*| Cell is not steppable |*/	
-};
 
-enum {
+enum custom_char_id {
 	PLAYER_ID = 0,
 	CREATURE_ID1,
 	CREATURE_ID2,
@@ -21,8 +14,8 @@ enum {
 };
 
 struct pos {
-	uint8_t x;
-	uint8_t y;
+	int8_t x;
+	int8_t y;
 };
 
 struct location {
@@ -30,7 +23,19 @@ struct location {
 	uint8_t	    cell_data[2][16];	/*| buffer for data about location's field	|*/
 };
 
+/*| TODO: enum as btmask for all cell options |*/
+enum location_cell_type {
+	STP,	/*| Cell is steppable	  |*/
+	BCKGD,	/*| Cell is background	  |*/
+	FORGD,	/*| Cell is foreground	  |*/
+	UNSTP	/*| Cell is not steppable |*/	
+};
 
-uint8_t location_init(struct location *location, uint8_t uniq_cells[][8]);
+struct map {
+	struct location *locations[2][2];	
+};
+
+
+uint8_t location_init(struct location *location);
 
 #endif

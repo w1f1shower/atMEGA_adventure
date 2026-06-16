@@ -1,54 +1,41 @@
-struct location lobby = {
+struct location lobby00 = {
 	cell_data: { 
-		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP,   STP, STP, STP, FORGD, FORGD }, 
-		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, UNSTP, STP, STP, STP, FORGD, FORGD }
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }, 
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }
 	},
 	field: {
-			{ ' ', ' ', ' ', ' ', 'L', 'o', 'b', 'b', 'y', ' ', ' ',  ' ', ' ', ' ', LOCATION_FRAME_ID1, LOCATION_FRAME_ID2 },
-			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 0xFF, ' ', ' ', ' ', LOCATION_FRAME_ID3, LOCATION_FRAME_ID4 }
+		{ ' ', ' ', ' ', ' ', 'L', 'o', 'b', 'b', 'y', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+		{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', '0', ' ', ' ', ' ', ' ' }
 	}
 };
-
-uint8_t tree[4][8] = {
-	{
-		0b00000,
-		0b00011,
-		0b00100,
-		0b01000,
-		0b01011,
-		0b00100,
-		0b01000,
-		0b01000
+struct location lobby01 = {
+	cell_data: { 
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }, 
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }
 	},
-	{
-		0b11000,
-		0b00110,
-		0b00001,
-		0b00001,
-		0b11001,
-		0b00110,
-		0b00001,
-		0b00010
+	field: {
+		{ ' ', ' ', 'O', '_', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+		{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '0', '1', ' ', ' ', ' ', ' ' }
+	}
+};
+struct location lobby10 = {
+	cell_data: { 
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }, 
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }
 	},
-	{
-		0b00100,
-		0b00011,
-		0b00000,
-		0b00001,
-		0b00000,
-		0b00000,
-		0b00011,
-		0b01111
+	field: {
+		{ ' ', ' ', '0', '_', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+		{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '1', '0', ' ', ' ', ' ', ' ' }
+	}
+};
+struct location lobby11 = {
+	cell_data: { 
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }, 
+		{ STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP, STP }
 	},
-	{
-		0b01100,
-		0b10000,
-		0b11100,
-		0b10000,
-		0b11000,
-		0b10000,
-		0b11000,
-		0b11100
+	field: {
+		{ ' ', ' ', ' ', ' ', 'L', 'o', 'b', 'b', 'y', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+		{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '1', '1', ' ', ' ', ' ', ' ' }
 	}
 };
 
@@ -60,4 +47,10 @@ struct object crate = {
 	id: 0xDB,
 };
 
+const struct map lobby_map = {
+	locations: {
+		{&lobby00, &lobby01}, 
+		{&lobby10, &lobby11}
+	}
 
+};
