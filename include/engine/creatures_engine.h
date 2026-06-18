@@ -2,9 +2,12 @@
 #define CREATURES_ENGINE_H
 
 struct creature {
-	struct pos position; 	
-	struct pos prev_position; 	
+	struct pos loc_position; 	
+	struct pos prev_loc_position; 	
+	struct pos map_position;
 	uint8_t id;
+	uint8_t health;
+	uint8_t attack;
 	uint8_t direction;
 	const uint8_t sides[][8];
 };

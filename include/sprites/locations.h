@@ -2,6 +2,6 @@
 #define LOCATIONS_H
 
 	
-#include "locations/lobby.h"
+#include "locations/lab.h"
 
 #endif

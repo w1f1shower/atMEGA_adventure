@@ -6,91 +6,114 @@ void player_move(struct creature *player, struct location *location, uint8_t btn
 uint8_t location_init(struct location *location);
 
 void player_control(struct creature *player, const struct map *map, uint8_t btn) {
-	static uint8_t map_x = 0, map_y = 0; //maybe put somewhere else later
 
 	if (btn != BTN_NONE ) {
-		player->prev_position.x = player->position.x;
-		player->prev_position.y = player->position.y;
+		player->prev_loc_position.x = player->loc_position.x,
+		player->prev_loc_position.y = player->loc_position.y;
 
 		/*| Moving |*/
 		switch (btn) {
 			case BTN_LEFT: 
 				player->direction = DIR_LEFT_MOVING;
-				if (player->position.x > 0) {
-					if (map->locations[map_x][map_y]->cell_data
-						[player->position.y]
-						[player->position.x-1] 
-							< UNSTP)
-						player->position.x--;
+				if (player->loc_position.x > 0) {
+					if (map->locations
+							[player->map_position.x]
+							[player->map_position.y]
+						->cell_data
+							[player->loc_position.y]
+							[player->loc_position.x-1] 
+					< UNSTP)
+						player->loc_position.x--;
 				}
 				else {
-					if (map_x > 0 &&
-					map->locations[map_x-1][map_y]->cell_data
-						[player->position.y][15]
-							< UNSTP) {
-						player->position.x = 15;
-						map_x--;
-						location_init(map->locations[map_x][map_y]);
+					if (player->map_position.x > 0 &&
+					map->locations
+						[player->map_position.x-1]
+						[player->map_position.y]
+					->cell_data
+						[player->loc_position.y][15]
+					< UNSTP) {
+						player->loc_position.x = 15;
+						player->map_position.x--;
+						location_init(map->locations[player->map_position.x][player->map_position.y]);
 					}
 				}
 				break;
 
 			case BTN_RIGHT: 
 				player->direction = DIR_RIGHT_MOVING;
-				if (player->position.x < 15) {
-					if (map->locations[map_x][map_y]->cell_data
-						[player->position.y]
-						[player->position.x+1]
-							< UNSTP)
-						player->position.x++;
+				if (player->loc_position.x < 15) {
+					if (map->locations
+							[player->map_position.x]
+							[player->map_position.y]
+						->cell_data
+							[player->loc_position.y]
+							[player->loc_position.x+1]
+					< UNSTP)
+						player->loc_position.x++;
 				}
 				else {
-					if (map_x < 1 &&
-					map->locations[map_x+1][map_y]->cell_data
-						[player->position.y][0]
-							< UNSTP) {
-						player->position.x = 0;
-						map_x++;
-						location_init(map->locations[map_x][map_y]);
+					if (player->map_position.x < 1 &&
+					map->locations
+						[player->map_position.x+1]
+						[player->map_position.y]
+					->cell_data
+						[player->loc_position.y][0]
+					< UNSTP) {
+						player->loc_position.x = 0;
+						player->map_position.x++;
+						location_init(map->locations[player->map_position.x][player->map_position.y]);
 					}
 				}
 				break;
 
 			case BTN_UP: 
 				player->direction = DIR_UP;
-				if (player->position.y > 0) {
-					if (map->locations[map_x][map_y]->cell_data
-						[player->position.y-1]
-						[player->position.x] 
-							< UNSTP)
-						player->position.y--;
+				if (player->loc_position.y > 0) {
+					if (map->locations
+							[player->map_position.x]
+							[player->map_position.y]
+						->cell_data
+							[player->loc_position.y-1]
+							[player->loc_position.x] 
+					< UNSTP)
+					player->loc_position.y--;
 				}
-				else if (map_y < 1 &&
-					map->locations[map_x][map_y+1]->cell_data
-						[1][player->position.x]
-							< UNSTP) {
-					player->position.y = 1;
-					map_y++;
-					location_init(map->locations[map_x][map_y]);
+				else if (player->map_position.y < 1 &&
+					map->locations
+						[player->map_position.x]
+						[player->map_position.y+1]
+					->cell_data
+						[1][player->loc_position.x]
+				< UNSTP) {
+					player->loc_position.y = 1;
+					player->map_position.y++;
+					location_init(map->locations[player->map_position.x][player->map_position.y]);
 				}
 				break;
 
 			case BTN_DOWN: 
 				player->direction = DIR_DOWN;
-				if (player->position.y < 1) {
-					if (map->locations[map_x][map_y]->cell_data
-						[player->position.y+1]
-						[player->position.x]
-							< UNSTP)
-						player->position.y++;
+				if (player->loc_position.y < 1) {
+					if (map->locations
+						[player->map_position.x]
+						[player->map_position.y]
+					->cell_data
+						[player->loc_position.y+1]
+						[player->loc_position.x]
+					< UNSTP)
+					player->loc_position.y++;
 				}
-				else if (map_y > 0 &&
-					map->locations[map_x][map_y-1]->cell_data
-						[0][player->position.x]
-							< UNSTP) {
-					player->position.y = 0;
-					map_y--;
-					location_init(map->locations[map_x][map_y]);
+				else if (player->map_position.y > 0 &&
+					map->locations
+						[player->map_position.x]
+						[player->map_position.y-1]
+					->cell_data
+						[0][player->loc_position.x]
+				< UNSTP) {
+					player->loc_position.y = 0;
+					player->map_position.y--;
+					location_init(map->locations[player->map_position.x][player->map_position.y]);
 				}
 				break;
 
@@ -99,7 +122,7 @@ void player_control(struct creature *player, const struct map *map, uint8_t btn)
 		_delay_ms(200);
 	}
 	else {
-		/*| Changing to standing position |*/
+		/*| Changing to standing loc_position |*/
 		switch (player->direction) {
 			case DIR_RIGHT_MOVING:
 				player->direction = DIR_RIGHT;
@@ -114,20 +137,20 @@ void player_control(struct creature *player, const struct map *map, uint8_t btn)
 		}
 	}
 	/*| Rendering: (Back/Fore)ground hanldling |*/
-	switch (map->locations[map_x][map_y]
-			->cell_data[player->position.y]
-				   [player->position.x]) {
+	switch (map->locations[player->map_position.x][player->map_position.y]
+			->cell_data[player->loc_position.y]
+				   [player->loc_position.x]) {
 		case STP: case BCKGD:
 			lcd_create_char(PLAYER_ID, player->sides[player->direction]);
-			lcd_goto(player->position.y, player->position.x);
+			lcd_goto(player->loc_position.y, player->loc_position.x);
 			lcd_data(PLAYER_ID);
 		case FORGD:
-			if (player->prev_position.y != player->position.y || 
-			    player->prev_position.x != player->position.x) {
-				lcd_goto(player->prev_position.y, player->prev_position.x);
-				lcd_data(map->locations[map_x][map_y]
-						 ->field[player->prev_position.y]
-							[player->prev_position.x]);
+			if (player->prev_loc_position.y != player->loc_position.y || 
+			    player->prev_loc_position.x != player->loc_position.x) {
+				lcd_goto(player->prev_loc_position.y, player->prev_loc_position.x);
+				lcd_data(map->locations[player->map_position.x][player->map_position.y]
+						 ->field[player->prev_loc_position.y]
+							[player->prev_loc_position.x]);
 			}
 		default: break;
 	}

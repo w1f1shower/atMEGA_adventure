@@ -3,16 +3,17 @@
 
 
 struct creature player = {
-	position: {
+	loc_position: {
 		x: 8,
 		y: 1
 	},
-	prev_position: {
+	map_position: {
 		x: 0,
 		y: 0
 	},
-
 	id: PLAYER_ID,
+	health: 100,
+	attack: 10,
 	direction: DIR_UP,
 	sides: {
 		{ /*| DIR_UP |*/
